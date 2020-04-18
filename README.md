@@ -55,5 +55,41 @@ src/styles/element-variables.scss
 $--color-primary: #000000; // 更换颜色值为期望的值即可
 ``````
 
+## 更换 Sidebar Logo 默认值
+
+``````
+src\settings.js
+
+  /**
+   * @type {boolean} true | false
+   * @description Whether show the logo in sidebar
+   */
+  sidebarLogo: false,
+``````
+
+## 更换浏览器标题显示名称
+
+``````
+src\settings.js
+
+  title: 'Vue Element Admin',
+``````
+
+## 更换错误日志组件显示
+
+``````
+src\settings.js
+
+  /**
+   * @type {string | array} 'production' | ['production', 'development']
+   * @description Need show err logs component.
+   * The default is only used in the production env
+   * If you want to also use it in dev, you can pass ['production', 'development']
+   */
+  // errorLog: 'production'
+  errorLog: 'development'
+``````
+
+
 
 

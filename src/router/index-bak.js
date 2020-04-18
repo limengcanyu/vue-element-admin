@@ -142,8 +142,8 @@ export const asyncRoutes = [
     meta: {
       // title: 'Permission',
       title: '权限',
-      icon: 'lock'
-      // roles: ['admin', 'editor'] // you can set roles in root nav
+      icon: 'lock',
+      roles: ['admin', 'editor'] // you can set roles in root nav
     },
     children: [
       {
@@ -152,8 +152,8 @@ export const asyncRoutes = [
         name: 'PagePermission',
         meta: {
           // title: 'Page Permission',
-          title: '页面权限'
-          // roles: ['admin'] // or you can only set roles in sub nav
+          title: '页面权限',
+          roles: ['admin'] // or you can only set roles in sub nav
         }
       },
       {
@@ -172,8 +172,8 @@ export const asyncRoutes = [
         name: 'RolePermission',
         meta: {
           // title: 'Role Permission',
-          title: '角色权限'
-          // roles: ['admin']
+          title: '角色权限',
+          roles: ['admin']
         }
       }
     ]

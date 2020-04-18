@@ -90,6 +90,32 @@ src\settings.js
   errorLog: 'development'
 ``````
 
+## 更换菜单栏颜色
 
+``````
+src\styles\variables.scss
+
+// sidebar
+$menuText:#bfcbd9; // 菜单文本颜色
+$menuActiveText:#409EFF; // 菜单激活颜色
+$subMenuActiveText:#f4f4f5; // https://github.com/ElemeFE/element/issues/12951 // 子菜单激活颜色
+
+//$menuBg:#304156; // 菜单背景
+//$menuHover:#263445; // 菜单鼠标悬停背景
+
+$menuBg: #000000; // 菜单背景
+$menuHover: #cd2a02; // 菜单鼠标悬停背景
+
+//$subMenuBg:#1f2d3d; // 子菜单背景
+//$subMenuHover:#001528; // 子菜单鼠标悬停背景
+
+$subMenuBg: #000000; // 子菜单背景
+$subMenuHover: #e06201; // 子菜单鼠标悬停背景
+
+//$sideBarWidth: 210px; // 菜单栏宽度
+
+$sideBarWidth: 300px; // 菜单栏宽度
+
+``````
 
 

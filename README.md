@@ -46,3 +46,14 @@ npm run lint
 # code format check and auto fix
 npm run lint -- --fix
 ```
+
+## 更换默认主题
+
+``````
+src/styles/element-variables.scss
+
+$--color-primary: #000000; // 更换颜色值为期望的值即可
+``````
+
+
+

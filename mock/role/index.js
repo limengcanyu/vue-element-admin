@@ -41,6 +41,8 @@ export default [
     url: '/vue-element-admin/routes',
     type: 'get',
     response: _ => {
+      console.log('mock get all routes form server')
+
       return {
         code: 20000,
         data: routes
@@ -53,6 +55,8 @@ export default [
     url: '/vue-element-admin/roles',
     type: 'get',
     response: _ => {
+      console.log('mock get all roles form server')
+
       return {
         code: 20000,
         data: roles

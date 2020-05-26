@@ -124,3 +124,29 @@ $sideBarWidth: 300px; // 菜单栏宽度
 src\views\login\index.vue
 
 ``````
+
+## 权限
+
+src\router\index.js
+
+前端路由总表，包含所有路由定义
+
+src\permission.js
+
+负责项目路由跳转
+
+src\store\modules\permission.js
+
+根据后台获取的用户路由生成前端用户路由
+
+src\store\modules\user.js
+
+用户相关操作
+
+src\api\user.js
+
+mock获取用户数据
+
+src\api\role.js
+
+mock获取用户角色

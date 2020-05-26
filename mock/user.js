@@ -1,10 +1,14 @@
 
 const tokens = {
   admin: {
-    token: 'admin-token'
+    // token: 'admin-token'
+    token: 'token'
   },
   editor: {
     token: 'editor-token'
+  },
+  user: {
+    token: 'token'
   }
 }
 
@@ -22,6 +26,13 @@ const users = {
     introduction: 'I am an editor',
     avatar: 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif',
     name: 'Normal Editor'
+  },
+  'token': {
+    roles: ['admin'],
+    routes: ['/permission', 'page', 'directive', 'role', '/icon', 'index', '/components', 'tinymce'], // 后台返回用户拥有的路由数组
+    introduction: 'I am a super administrator',
+    avatar: 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif',
+    name: 'Super Admin'
   }
 }
 

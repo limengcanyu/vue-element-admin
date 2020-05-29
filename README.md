@@ -125,6 +125,51 @@ src\views\login\index.vue
 
 ``````
 
+## 更换页签背景
+
+``````
+src\layout\components\TagsView\index.vue
+
+.tags-view-wrapper {
+    .tags-view-item {
+      display: inline-block;
+      position: relative;
+      cursor: pointer;
+      height: 26px;
+      line-height: 26px;
+      border: 1px solid #d8dce5;
+      color: #495060;
+      background: #fff;
+      padding: 0 8px;
+      font-size: 12px;
+      margin-left: 5px;
+      margin-top: 4px;
+      &:first-of-type {
+        margin-left: 15px;
+      }
+      &:last-of-type {
+        margin-right: 15px;
+      }
+      &.active {
+        background-color: #000000; // 激活页签背景
+        color: #fff;
+        border-color: #000000; // 激活页签边界背景
+        &::before {
+          content: '';
+          background: #fff;
+          display: inline-block;
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          position: relative;
+          margin-right: 2px;
+        }
+      }
+    }
+  }
+
+``````
+
 ## 权限
 
 src\router\index.js

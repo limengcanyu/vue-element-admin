@@ -22,7 +22,7 @@ function hasPermission(roles, route) {
  * @param route
  */
 function hasPermissionByRoutes(userRoutes, route) {
-  console.log('=== userRoutes: ' + JSON.stringify(userRoutes) + '\n=== route.path: ' + JSON.stringify(route.path))
+  // console.log('=== userRoutes: ' + JSON.stringify(userRoutes) + '\n=== route.path: ' + JSON.stringify(route.path))
 
   if (route.path) {
     return userRoutes.includes(route.path)

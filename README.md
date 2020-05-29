@@ -195,3 +195,35 @@ mock获取用户数据
 src\api\role.js
 
 mock获取用户角色
+
+## 切换mock模式到后端调用
+
+.env.development
+
+VUE_APP_BASE_API = 'http://localhost:8080'
+
+src\main.js
+
+注释以下内容
+
+// if (process.env.NODE_ENV === 'production') {
+//   const { mockXHR } = require('../mock')
+//   mockXHR()
+// }
+
+mock\index.js
+
+注释以下内容
+
+// import user from './user'
+// import role from './role'
+// import article from './article'
+// import search from './remote-search'
+
+const mocks = [
+  // ...user,
+  // ...role,
+  // ...article,
+  // ...search
+]
+

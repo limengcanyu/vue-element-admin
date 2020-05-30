@@ -42,9 +42,16 @@ const actions = {
     const { username, password } = userInfo
     return new Promise((resolve, reject) => {
       login({ username: username.trim(), password: password }).then(response => {
+        console.log('=== login success response')
+        console.log(response)
+
         const { data } = response
+
         commit('SET_TOKEN', data.token)
         setToken(data.token)
+
+        console.log('=== login success response token: ' + getToken())
+
         resolve()
       }).catch(error => {
         reject(error)
@@ -55,8 +62,11 @@ const actions = {
   // get user info
   getInfo({ commit, state }) {
     return new Promise((resolve, reject) => {
-      // getInfo(state.token).then(response => {
-      getInfo('admin-token').then(response => {
+      getInfo(state.token).then(response => {
+      // getInfo('admin-token').then(response => {
+        console.log('=== get user info success response')
+        console.log(response)
+
         const { data } = response
 
         if (!data) {
@@ -139,19 +149,19 @@ const actions = {
       setToken(token)
 
       // const { roles } = await dispatch('getInfo')
-      const { routePaths } = await dispatch('getInfo')
-      // const { routeNames } = await dispatch('getInfo')
+      // const { routePaths } = await dispatch('getInfo')
+      const { routeNames } = await dispatch('getInfo')
 
       resetRouter()
 
-      // // generate accessible routes map based on roles
+      // generate accessible routes map based on roles
       // const accessRoutes = await dispatch('permission/generateRoutes', roles, { root: true })
 
-      // generate accessible routes map based on roles
-      const accessRoutes = await dispatch('permission/generateRoutesByRoutePath', routePaths, { root: true })
+      // generate accessible routes map based on route path
+      // const accessRoutes = await dispatch('permission/generateRoutesByRoutePath', routePaths, { root: true })
 
-      // // generate accessible routes map based on roles
-      // const accessRoutes = await dispatch('permission/generateRoutesByRouteName', routeNames, { root: true })
+      // generate accessible routes map based on route name
+      const accessRoutes = await dispatch('permission/generateRoutesByRouteName', routeNames, { root: true })
 
       // dynamically add accessible routes
       router.addRoutes(accessRoutes)

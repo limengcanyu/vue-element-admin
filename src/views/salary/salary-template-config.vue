@@ -6,8 +6,8 @@
           <el-collapse :value="'1'" accordion>
             <el-collapse-item title="" name="1">
               <el-form :inline="true" :model="formInline" class="demo-form-inline">
-                <el-form-item label="人员姓名">
-                  <el-input v-model="formInline.user" placeholder="人员姓名" />
+                <el-form-item label="薪资模板名称">
+                  <el-input v-model="formInline.user" placeholder="薪资模板名称" />
                 </el-form-item>
 
                 <el-form-item label="证件类型">
@@ -101,7 +101,7 @@
 
 <script>
 export default {
-  name: 'EmployeeList',
+  name: 'SalaryConfig',
 
   data() {
     return {

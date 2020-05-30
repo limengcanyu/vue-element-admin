@@ -20,10 +20,10 @@ service.interceptors.request.use(
       // ['X-Token'] is a custom headers key
       // please modify it according to the actual situation
       // config.headers['X-Token'] = getToken()
-      config.headers['token'] = getToken()
+      config.headers['LOGIN-TOKEN'] = getToken()
     }
 
-    console.log('request interceptor')
+    console.log('=== request interceptor config')
     console.log(config)
 
     return config
@@ -48,7 +48,7 @@ service.interceptors.response.use(
    * You can also judge the status by HTTP Status Code
    */
   response => {
-    console.log('====== response interceptor')
+    console.log('=== response interceptor response')
     console.log(response)
 
     const res = response.data

@@ -47,7 +47,7 @@ function hasPermissionByRoutePath(userRoutes, route) {
  * @param route
  */
 function hasPermissionByRouteName(userRouteNames, route) {
-  console.log('=== 根据路由Name判断是否具有权限')
+  // console.log('=== 根据路由Name判断是否具有权限')
   // console.log('=== userRouteNames: ' + JSON.stringify(userRouteNames) + ' route.path: ' + JSON.stringify(route.name))
 
   if (route.path) {
@@ -123,7 +123,7 @@ export function filterAsyncRoutesByRoutePath(allRoutes, userRoutes) {
  * @param userRouteNames
  */
 export function filterAsyncRoutesByRouteName(allRoutes, userRouteNames) {
-  console.log('=== 根据用户路由name过滤路由')
+  // console.log('=== 根据用户路由name过滤路由')
   // console.log('=== 用户路由name: ' + JSON.stringify(userRouteNames))
 
   const res = []
@@ -198,7 +198,7 @@ const actions = {
 
   generateRoutesByRouteName({ commit }, routeNames) {
     console.log('=== 根据用户路由Name生成路由')
-    console.log('=== 用户路由Name: ' + JSON.stringify(routeNames))
+    // console.log('=== 用户路由Name: ' + JSON.stringify(routeNames))
 
     return new Promise(resolve => {
       // let accessedRoutes

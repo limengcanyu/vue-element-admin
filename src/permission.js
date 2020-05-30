@@ -11,7 +11,8 @@ NProgress.configure({ showSpinner: false }) // NProgress Configuration
 const whiteList = ['/login', '/auth-redirect'] // no redirect whitelist
 
 router.beforeEach(async(to, from, next) => {
-  console.log('to.path: ' + to.path)
+  console.log('===================================================================')
+  console.log('=== router.beforeEach to.path: ' + to.path)
 
   // start progress bar
   NProgress.start()
@@ -21,34 +22,39 @@ router.beforeEach(async(to, from, next) => {
 
   // determine whether the user has logged in
   const hasToken = getToken()
-  console.log('hasToken: ' + hasToken)
+  console.log('=== router.beforeEach hasToken: ' + hasToken)
 
   if (hasToken) {
-    console.log('user has token')
+    console.log('=== router.beforeEach user has token hasToken: ' + hasToken)
 
     if (to.path === '/login') {
-      console.log('user to login')
+      console.log('=== router.beforeEach user to login')
 
       // if is logged in, redirect to the home page
       next({ path: '/' })
       NProgress.done()
     } else {
-      console.log('user not to login')
+      console.log('=== router.beforeEach user not to login')
 
       // determine whether the user has obtained his permission roles through getInfo
       const hasRoles = store.getters.roles && store.getters.roles.length > 0
-      console.log('hasRoles: ' + hasRoles)
+      console.log('=== router.beforeEach hasRoles: ' + hasRoles)
 
       // determine whether the user has obtained his permission routes through getInfo
-      const hasRoutes = store.getters.routes && store.getters.routes.length > 0
-      console.log('hasRoutes: ' + hasRoutes)
+      // const hasRoutes = store.getters.routePaths && store.getters.routePaths.length > 0
+      // console.log('=== router.beforeEach hasRoutes: ' + hasRoutes)
+
+      const hasRoutes = store.getters.routeNames && store.getters.routeNames.length > 0
+      console.log('=== router.beforeEach hasRoutes: ' + hasRoutes)
 
       if (hasRoles) {
-        console.log('user has roles')
+        console.log('=== router.beforeEach user has roles')
+        console.log('=== hasRoles: ' + JSON.stringify(hasRoles))
+        console.log('=== hasRoutes: ' + JSON.stringify(hasRoutes))
 
         next()
       } else {
-        console.log('user has no roles')
+        console.log('=== router.beforeEach user has no roles')
 
         try {
           // get user info
@@ -68,15 +74,16 @@ router.beforeEach(async(to, from, next) => {
           // console.log('generate accessible routes map based on route path completed')
 
           const { routeNames } = await store.dispatch('user/getInfo')
-          console.log('get user info completed')
+          console.log('=== router.beforeEach get user info completed routeNames: ' + JSON.stringify(routeNames))
 
           // generate accessible routes map based on roles
           const accessRoutes = await store.dispatch('permission/generateRoutesByRouteName', routeNames)
-          console.log('generate accessible routes map based on route name completed')
+          console.log('=== router.beforeEach generate accessible routes map based on route name completed accessRoutes: ')
+          console.log(accessRoutes)
 
           // dynamically add accessible routes
           router.addRoutes(accessRoutes)
-          console.log('dynamically add accessible routes completed')
+          console.log('=== router.beforeEach dynamically add accessible routes completed')
 
           // hack method to ensure that addRoutes is complete
           // set the replace: true, so the navigation will not leave a history record
@@ -92,7 +99,7 @@ router.beforeEach(async(to, from, next) => {
     }
   } else {
     /* has no token*/
-    console.log('user has no token')
+    console.log('=== router.beforeEach user has no token')
 
     if (whiteList.indexOf(to.path) !== -1) {
       // in the free login whitelist, go directly

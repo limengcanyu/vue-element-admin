@@ -8,7 +8,8 @@ const state = {
   avatar: '',
   introduction: '',
   roles: [],
-  routes: []
+  routePaths: [],
+  routeNames: []
 }
 
 const mutations = {
@@ -27,8 +28,11 @@ const mutations = {
   SET_ROLES: (state, roles) => {
     state.roles = roles
   },
-  SET_ROUTES: (state, routes) => {
-    state.routes = routes
+  SET_ROUTE_PATHS: (state, routePaths) => {
+    state.routePaths = routePaths
+  },
+  SET_ROUTE_NAMES: (state, routeNames) => {
+    state.routeNames = routeNames
   }
 }
 
@@ -59,20 +63,26 @@ const actions = {
           reject('Verification failed, please Login again.')
         }
 
-        const { roles, routes, name, avatar, introduction } = data
+        const { roles, routePaths, routeNames, name, avatar, introduction } = data
 
         // roles must be a non-empty array
         if (!roles || roles.length <= 0) {
           reject('getInfo: roles must be a non-null array!')
         }
 
-        // routes must be a non-empty array
-        if (!routes || routes.length <= 0) {
-          reject('getInfo: routes must be a non-null array!')
+        // routePaths must be a non-empty array
+        if (!routePaths || routePaths.length <= 0) {
+          reject('getInfo: routePaths must be a non-null array!')
+        }
+
+        // routeNames must be a non-empty array
+        if (!routeNames || routeNames.length <= 0) {
+          reject('getInfo: routeNames must be a non-null array!')
         }
 
         commit('SET_ROLES', roles)
-        commit('SET_ROUTES', routes)
+        commit('SET_ROUTE_PATHS', routePaths)
+        commit('SET_ROUTE_NAMES', routeNames)
         commit('SET_NAME', name)
         commit('SET_AVATAR', avatar)
         commit('SET_INTRODUCTION', introduction)
@@ -90,7 +100,8 @@ const actions = {
       logout(state.token).then(() => {
         commit('SET_TOKEN', '')
         commit('SET_ROLES', [])
-        commit('SET_ROUTES', [])
+        commit('SET_ROUTE_PATHS', [])
+        commit('SET_ROUTE_NAMES', [])
 
         removeToken()
         resetRouter()
@@ -111,7 +122,9 @@ const actions = {
     return new Promise(resolve => {
       commit('SET_TOKEN', '')
       commit('SET_ROLES', [])
-      commit('SET_ROUTES', [])
+      commit('SET_ROUTE_PATHS', [])
+      commit('SET_ROUTE_NAMES', [])
+
       removeToken()
       resolve()
     })
@@ -125,12 +138,20 @@ const actions = {
       commit('SET_TOKEN', token)
       setToken(token)
 
-      const { roles } = await dispatch('getInfo')
+      // const { roles } = await dispatch('getInfo')
+      const { routePaths } = await dispatch('getInfo')
+      // const { routeNames } = await dispatch('getInfo')
 
       resetRouter()
 
+      // // generate accessible routes map based on roles
+      // const accessRoutes = await dispatch('permission/generateRoutes', roles, { root: true })
+
       // generate accessible routes map based on roles
-      const accessRoutes = await dispatch('permission/generateRoutes', roles, { root: true })
+      const accessRoutes = await dispatch('permission/generateRoutesByRoutePath', routePaths, { root: true })
+
+      // // generate accessible routes map based on roles
+      // const accessRoutes = await dispatch('permission/generateRoutesByRouteName', routeNames, { root: true })
 
       // dynamically add accessible routes
       router.addRoutes(accessRoutes)

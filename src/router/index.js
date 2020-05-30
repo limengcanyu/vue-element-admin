@@ -182,6 +182,7 @@ export const asyncRoutes = [
   {
     path: '/icon',
     component: Layout,
+    name: 'icon',
     children: [
       {
         path: 'index',
@@ -238,6 +239,7 @@ export const asyncRoutes = [
   {
     path: '/tab',
     component: Layout,
+    name: 'tab',
     children: [
       {
         path: 'index',
@@ -278,6 +280,7 @@ export const asyncRoutes = [
   {
     path: '/error-log',
     component: Layout,
+    name: 'error-log',
     children: [
       {
         path: 'log',
@@ -351,6 +354,7 @@ export const asyncRoutes = [
   {
     path: '/pdf',
     component: Layout,
+    name: 'pdf',
     redirect: '/pdf/index',
     children: [
       {
@@ -364,12 +368,14 @@ export const asyncRoutes = [
   {
     path: '/pdf/download',
     component: () => import('@/views/pdf/download'),
+    name: 'pdf-download',
     hidden: true
   },
 
   {
     path: '/theme',
     component: Layout,
+    name: 'theme',
     children: [
       {
         path: 'index',
@@ -384,6 +390,7 @@ export const asyncRoutes = [
   {
     path: '/clipboard',
     component: Layout,
+    name: 'clipboard',
     children: [
       {
         path: 'index',
@@ -398,9 +405,11 @@ export const asyncRoutes = [
   {
     path: 'external-link',
     component: Layout,
+    name: 'external-link',
     children: [
       {
         path: 'https://github.com/PanJiaChen/vue-element-admin',
+        name: 'VueElementAdmin',
         // meta: { title: 'External Link', icon: 'link' }
         meta: { title: '外部链接', icon: 'link' }
       }

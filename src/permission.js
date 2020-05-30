@@ -51,25 +51,28 @@ router.beforeEach(async(to, from, next) => {
         console.log('user has no roles')
 
         try {
-          // 根据用户角色生成路由
-          // // get user info
-          // // note: roles must be a object array! such as: ['admin'] or ,['developer','editor']
+          // get user info
+          // note: roles must be a object array! such as: ['admin'] or ,['developer','editor']
           // const { roles } = await store.dispatch('user/getInfo')
           // console.log('get user info completed')
-          //
+
           // // generate accessible routes map based on roles
           // const accessRoutes = await store.dispatch('permission/generateRoutes', roles)
           // console.log('generate accessible routes map based on roles completed')
 
-          // 根据用户路由生成路由
-          // get user info
-          // note: roles must be a object array! such as: ['admin'] or ,['developer','editor']
-          const { routes } = await store.dispatch('user/getInfo')
+          // const { routePaths } = await store.dispatch('user/getInfo')
+          // console.log('get user info completed routePaths: ' + JSON.stringify(routePaths))
+
+          // // generate accessible routes map based on roles
+          // const accessRoutes = await store.dispatch('permission/generateRoutesByRoutePath', routePaths)
+          // console.log('generate accessible routes map based on route path completed')
+
+          const { routeNames } = await store.dispatch('user/getInfo')
           console.log('get user info completed')
 
           // generate accessible routes map based on roles
-          const accessRoutes = await store.dispatch('permission/generateRoutesByRoutes', routes)
-          console.log('generate accessible routes map based on roles completed')
+          const accessRoutes = await store.dispatch('permission/generateRoutesByRouteName', routeNames)
+          console.log('generate accessible routes map based on route name completed')
 
           // dynamically add accessible routes
           router.addRoutes(accessRoutes)
